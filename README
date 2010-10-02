@@ -1,0 +1,41 @@
+Liteframe PHP 5.3+ Framework
+http://github.com/nshahzad/liteframe
+
+
+I know, I know, there are a ton of frameworks out there. But I needed something
+very lightweight, and figured it would be a nice and useful exercise in using some 
+new features of PHP 5.3, particularly namespaces. This will stay really simple, 
+emulating some of CakePHPs features. I'll be integrating Doctrine soon, but I 
+don't really need database connectivity right now. I'm basically using this as
+a lookup server, for relaying Amazon API requests to the front-end, and caching 
+them in memcache/APC.
+
+Usage:
+
+I'll have more detailed docs, but look at the app/controllers/default_controller.php
+Basically, that's it. I'll be adding more functions to the $this-> as I need them,
+or ones that make sense. 
+
+
+License:
+
+Copyright (c) 2010 Nabeel Shahzad
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
