@@ -1,9 +1,10 @@
 <?php
 /**
  * Liteframe PHP Framework
- * Copyright (c) 2010 Nabeel Shahzad <http://github.com/nshahzad>
- * 
- * License: MIT
+ * @author Nabeel Shahzad
+ * @copyright Copyright (c) 2009 - 2010, Nabeel Shahzad
+ * @link http://github.com/nshahzad/liteframe
+ *
  */
 
 namespace Liteframe;

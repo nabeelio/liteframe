@@ -12,6 +12,8 @@ them in memcache/APC.
 
 Usage:
 
+Point Apache (or whatever webserver) to the app/www directory.
+
 I'll have more detailed docs, but look at the app/controllers/default_controller.php
 Basically, that's it. I'll be adding more functions to the $this-> as I need them,
 or ones that make sense. 
