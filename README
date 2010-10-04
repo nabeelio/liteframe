@@ -35,7 +35,7 @@ Layouts:
 Under apps/layouts there's a default.tpl. This is the default layout used. You
 can have multiple layouts, and change the one that's used by changing:
 
-	$this->layout = '';
+	$this->layout = 'default';
 
 In the controller. All of your HTML will go there, just where content goes, place:
 
