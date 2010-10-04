@@ -27,7 +27,7 @@ class URLParser {
 		$parts = explode('/', $_REQUEST['q']);
 		$return['controller'] = $parts[1];
 
-		if(isset($parts[2]) === true)
+		if(isset($parts[2]) === true && $parts[2] != '')
 		{
 			$return['function'] = $parts[2];
 		}		

@@ -10,16 +10,50 @@ don't really need database connectivity right now. I'm basically using this as
 a lookup server, for relaying Amazon API requests to the front-end, and caching 
 them in memcache/APC.
 
+--------------
 Usage:
+--------------
 
 Point Apache (or whatever webserver) to the app/www directory.
 
 I'll have more detailed docs, but look at the app/controllers/default_controller.php
 Basically, that's it. I'll be adding more functions to the $this-> as I need them,
-or ones that make sense. 
+or ones that make sense.
+
+Add your custom configuration options into app/config/config.php using:
+
+	\Liteframe\Config::set('KEY', 'VALUE');
+
+And retrieve using:
+
+	\Liteframe\Config::get('KEY');
+
+--------------
+Layouts:
+--------------
+
+Under apps/layouts there's a default.tpl. This is the default layout used. You
+can have multiple layouts, and change the one that's used by changing:
+
+	$this->layout = '';
+
+In the controller. All of your HTML will go there, just where content goes, place:
+
+	<?php echo $content_for_layout; ?>
+
+You can also get information about the current controller/function using:
+
+	<?php print_r($run_info); ?>
+
+$run_info is an Array containing:
+
+	Array ( [controller] => lookup [function] => index [args] => Array ( ) ) 
 
 
+
+--------------
 License:
+--------------
 
 Copyright (c) 2010 Nabeel Shahzad
 

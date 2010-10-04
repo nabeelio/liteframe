@@ -18,7 +18,7 @@ include LITEFRAME_PATH.DS.'core'.DS.'LF_Cache.class.php';
 include LITEFRAME_PATH.DS.'core'.DS.'LF_Config.class.php';
 include LITEFRAME_PATH.DS.'core'.DS.'LF_URLParser.class.php';
 
-\Liteframe\Config::set('DEFAULT_CONTROLLER', 'default');
+Config::set('DEFAULT_CONTROLLER', 'default');
 
 # Include the app config
 include APP_PATH.DS.'config'.DS.'config.php';
@@ -27,15 +27,22 @@ class Engine {
 	
 	public static function runApp()
 	{
-		$runner = \Liteframe\URLParser\URLParser::getPeices();
+		$run_info = URLParser\URLParser::getPeices();
 
 		# Include it and call it, really basic
-		include APP_PATH.DS.'controllers'.DS.$runner['controller'].'_controller.php';
+		include APP_PATH.DS.'controllers'.DS.$run_info['controller'].'_controller.php';
 
-		$controller_name = ucwords($runner['controller']).'Controller';
+		$controller_name = ucwords($run_info['controller']).'Controller';
 		$controller = new $controller_name();
 		$controller->init();
 
-		call_user_func_array(array($controller, $runner['function']), $runner['args']);
+		ob_start();
+		call_user_func_array(array($controller, $run_info['function']), $run_info['args']);
+
+		$content_for_layout = ob_get_clean();
+		ob_end_clean();
+
+		#$current_controller = $runner['controller'];
+		include APP_PATH.DS.'layouts'.DS.$controller->layout.'.tpl';
 	}
 }

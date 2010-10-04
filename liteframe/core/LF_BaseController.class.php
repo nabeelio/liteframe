@@ -14,6 +14,8 @@ class Controller
 	protected static $vars = array();
 	protected static $current_class = '';
 
+	public $layout = 'default';
+
 	public function init()
 	{
 		
