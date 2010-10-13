@@ -21,6 +21,7 @@ class Cache
 		}
 
 		// @TODO: Read from cache
+
 		return false;
 	}
 

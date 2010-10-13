@@ -21,19 +21,54 @@ class Controller
 		
 	}
 
+	/**
+	 * Set a variable for the view
+	 *
+	 * @param string $key Variable key
+	 * @param string $value Variable value
+	 * @return none 
+	 *
+	 */
 	protected function set($key, $value)
 	{
 		self::$vars[$key] = $value;
 	}
 
+
+	/**
+	 * Render a view. Pass the name of the template, it looks in
+	 * /app/views/CONTROLLER_NAME/name.tpl
+	 * 
+	 * @param string $file The filename, without the extension
+	 * @return none
+	 */
 	protected function render($file)
 	{
-		if(self::$current_class == '')
+		# Supplied absolute path to file
+		if($file[0] === '/')
 		{
-			self::$current_class = str_replace('controller', '', strtolower(get_called_class()));
+			$file = $file.'.tpl';
+		}
+		else
+		{
+			if(self::$current_class == '')
+			{
+				self::$current_class = str_replace('controller', '', strtolower(get_called_class()));
+			}
+
+			$file = self::$current_class.DS.$file.'.tpl';
 		}
 
 		extract(self::$vars, EXTR_OVERWRITE);
-		include APP_PATH.DS.'views'.DS.self::$current_class.DS.$file.'.tpl';
+		include APP_PATH.DS.'views'.DS.$file;
+	}
+
+	/**
+	 * Redirect the user to a certain path from root
+	 */
+	protected function redirect($path)
+	{
+		
+		header('Location: '.$path);
 	}
 }

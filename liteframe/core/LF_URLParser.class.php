@@ -19,6 +19,11 @@ class URLParser {
 			'args' => array(),
 		);
 
+		if($return['controller'] === '')
+		{
+			$return['controller'] = 'default';
+		}
+
 		if(!isset($_REQUEST['q']) || empty($_REQUEST['q']))
 		{
 			return $return;
