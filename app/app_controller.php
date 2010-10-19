@@ -11,5 +11,11 @@ namespace Liteframe;
 class AppController extends \Liteframe\Controller {
 	
 
+	public function init() {
+		
+		parent::init();
+
+	}
+
 
 }

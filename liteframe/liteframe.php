@@ -34,7 +34,6 @@ include LITEFRAME_PATH.DS.'config'.DS.'config.php';
 # Include the app config
 include APP_PATH.DS.'config'.DS.'config.php';
 
-
 /* Main class! */
 class Engine {
 	
@@ -47,15 +46,20 @@ class Engine {
 
 		$controller_name = ucwords($run_info['controller']).'Controller';
 		$controller = new $controller_name();
-		$controller->init();
-
+		
+		call_user_func_array(array($controller, 'init'), array());
+		
 		ob_start();
-		call_user_func_array(array($controller, $run_info['function']), $run_info['args']);
 
+		call_user_func_array(array($controller, $run_info['function']), $run_info['args']);
 		$content_for_layout = ob_get_clean();
+
 		ob_end_clean();
 
 		# Finally output with a global layout
-		include APP_PATH.DS.'layouts'.DS.$controller->layout.'.tpl';
+		if($controller->layout !== '')
+			include APP_PATH.DS.'layouts'.DS.$controller->layout.'.tpl';
+		else
+			include LITEFRAME_PATH.DS.'layouts'.DS.'default.tpl';
 	}
 }

@@ -1,4 +1,12 @@
 <?php
+/**
+ * Liteframe PHP Framework
+ * @author Nabeel Shahzad
+ * @copyright Copyright (c) 2009 - 2010, Nabeel Shahzad
+ * @link http://github.com/nshahzad/liteframe
+ *
+ */
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
