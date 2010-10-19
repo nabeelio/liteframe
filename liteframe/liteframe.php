@@ -18,7 +18,11 @@ include LITEFRAME_PATH.DS.'core'.DS.'LF_Cache.class.php';
 include LITEFRAME_PATH.DS.'core'.DS.'LF_Config.class.php';
 include LITEFRAME_PATH.DS.'core'.DS.'LF_URLParser.class.php';
 
+# Default config options
 Config::set('DEFAULT_CONTROLLER', 'default');
+Config::set('BASE_URL', $_SERVER['SERVER_NAME']);
+Config::set('USE_REWRITE', true);
+
 
 # Include the app config
 include APP_PATH.DS.'config'.DS.'config.php';
@@ -27,13 +31,6 @@ class Engine {
 	
 	public static function runApp()
 	{
-		
-		# Base URL set?
-		if(Config::get('BASE_URL') === false) {
-			Config::set('BASE_URL', $_SERVER['SERVER_NAME']);
-		}
-
-
 		$run_info = URLParser\URLParser::getPeices();
 
 		# Include it and call it, really basic

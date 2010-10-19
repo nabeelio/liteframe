@@ -125,18 +125,21 @@ class Controller
 	protected function url($path)
 	{
 		if(is_array($path)) {
-			
-
+			// @TODO: Process array params
 		}
 		else {
-			if($path[0] === '/') {
-				$path[0] = ' ';
+			if($path[0] !== '/') {
+				$path = '/'.$path;
 			}
 		}
 
 		$path = trim($path);
 
-		return 'http://'.Config::get('BASE_URL')."/{$path}";
+		if(Config::get('USE_REWRITE') === false) {
+			$path = '?q='.$path;
+		}
+
+		return 'http://'.Config::get('BASE_URL')."{$path}";
 	}
 
 	/**
@@ -144,7 +147,6 @@ class Controller
 	 */
 	protected function redirect($path)
 	{
-		
 		header('Location: '.$path);
 	}
 }
