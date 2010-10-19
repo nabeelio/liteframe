@@ -9,6 +9,8 @@
 
 namespace Liteframe;
 
+session_start();
+
 if(!defined('DS')) { define('DS', DIRECTORY_SEPARATOR); }
 if(!defined('LITEFRAME_PATH')) { define('LITEFRAME_PATH', dirname(__FILE__)); }
 
@@ -18,15 +20,22 @@ include LITEFRAME_PATH.DS.'core'.DS.'LF_Cache.class.php';
 include LITEFRAME_PATH.DS.'core'.DS.'LF_Config.class.php';
 include LITEFRAME_PATH.DS.'core'.DS.'LF_URLParser.class.php';
 
-# Default config options
-Config::set('DEFAULT_CONTROLLER', 'default');
-Config::set('BASE_URL', $_SERVER['SERVER_NAME']);
-Config::set('USE_REWRITE', true);
+# Include the proper app_controller
+if(file_exists(APP_PATH.DS.'app_controller.php')) {
+	include APP_PATH.DS.'app_controller.php';
+}
+else {
+	include LITEFRAME_PATH.DS.'controllers'.DS.'app_controller.php';
+}
 
+# Include the default config
+include LITEFRAME_PATH.DS.'config'.DS.'config.php';
 
 # Include the app config
 include APP_PATH.DS.'config'.DS.'config.php';
 
+
+/* Main class! */
 class Engine {
 	
 	public static function runApp()

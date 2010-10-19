@@ -6,12 +6,10 @@
  *
  */
 
-class DefaultController extends \Liteframe\AppController
-{
+namespace Liteframe;
 
-	public function index()
-	{
-		$this->render('index');
-	}	
+class AppController extends \Liteframe\Controller {
+	
+
 
 }
