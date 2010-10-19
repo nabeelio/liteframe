@@ -53,7 +53,7 @@ class Controller
 		{
 			if(self::$current_class == '')
 			{
-				self::$current_class = str_replace('controller', '', strtolower(get_called_class()));
+				self::$current_class = str_ireplace('controller', '', strtolower(get_called_class()));
 			}
 
 			$file = self::$current_class.DS.$file.'.tpl';
@@ -61,6 +61,82 @@ class Controller
 
 		extract(self::$vars, EXTR_OVERWRITE);
 		include APP_PATH.DS.'views'.DS.$file;
+	}
+
+
+
+	/**
+	 * Do a nice var_dump with <pre> tags, pass any number of
+	 * variables to it
+	 * 
+	 * @todo Log to a file or something based on passed options
+	 *
+	 * @return none
+	 *
+	 */
+	protected function var_dump()
+	{
+		echo '<pre>';
+		$args = func_get_args();
+		foreach ($args as $index => $arg)
+		{
+			echo "Argument {$index}: ";
+			var_dump($arg);
+		}
+
+		echo '</pre>';
+	}
+	
+
+
+	/**
+	 * Do a nice print_r with <pre> tags, pass any number of
+	 * variables to it
+	 * 
+	 * @todo Log to a file or something based on passed options
+	 *
+	 * @return none
+	 *
+	 */
+	protected function print_r()
+	{
+		echo '<pre>';
+		$args = func_get_args();
+		foreach ($args as $index => $arg)
+		{
+			echo "Argument {$index}: ";
+			print_r($arg);
+		}
+
+		echo '</pre>';
+	}
+
+
+
+	/**
+	 * Return a properly formatted URL
+	 * 
+	 * @todo Make this more versatile
+	 *
+	 * @param mixed $path This is a description
+	 * @return mixed This is the return value description
+	 *
+	 */
+	protected function url($path)
+	{
+		if(is_array($path)) {
+			
+
+		}
+		else {
+			if($path[0] === '/') {
+				$path[0] = ' ';
+			}
+		}
+
+		$path = trim($path);
+
+		return 'http://'.Config::get('BASE_URL')."/{$path}";
 	}
 
 	/**

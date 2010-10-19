@@ -11,6 +11,9 @@ class DefaultController extends \Liteframe\Controller
 
 	public function index()
 	{
+		#$this->print_r($_SERVER);
+		$this->print_r($this->url('/lookup/get'));
+
 		$this->render('index');
 	}	
 

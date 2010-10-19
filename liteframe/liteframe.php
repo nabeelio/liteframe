@@ -27,6 +27,13 @@ class Engine {
 	
 	public static function runApp()
 	{
+		
+		# Base URL set?
+		if(Config::get('BASE_URL') === false) {
+			Config::set('BASE_URL', $_SERVER['SERVER_NAME']);
+		}
+
+
 		$run_info = URLParser\URLParser::getPeices();
 
 		# Include it and call it, really basic
@@ -42,7 +49,7 @@ class Engine {
 		$content_for_layout = ob_get_clean();
 		ob_end_clean();
 
-		#$current_controller = $runner['controller'];
+		# Finally output with a global layout
 		include APP_PATH.DS.'layouts'.DS.$controller->layout.'.tpl';
 	}
 }
