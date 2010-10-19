@@ -10,6 +10,11 @@ don't really need database connectivity right now. I'm basically using this as
 a lookup server, for relaying Amazon API requests to the front-end, and caching 
 them in memcache/APC.
 
+CakePHP is a bit 'heavy' for my purposes, but I do like their ideas and some of
+their conventions. So I'm picking up their best habits and some of my habits I've
+picked up from using other frameworks as well. Overall, I just want this to be
+super light, with all the basics
+
 --------------
 Usage:
 --------------
@@ -27,6 +32,26 @@ Add your custom configuration options into app/config/config.php using:
 And retrieve using:
 
 	\Liteframe\Config::get('KEY');
+
+Default configuration options are located in:
+
+	/liteframe/config/config.php
+
+
+--------------
+Application Controller:
+--------------
+
+As with CakePHP, there's a controller you can use as the parent which you can
+modify to add custom stuff which is available to all controllers. The file is:
+
+	app/app_controller.php
+
+The default controller inherits from this.
+
+--------------
+Application Controller:
+--------------
 
 --------------
 Layouts:
@@ -50,6 +75,14 @@ $run_info is an Array containing:
 	Array ( [controller] => lookup [function] => index [args] => Array ( ) ) 
 
 
+--------------
+To Do List:
+--------------
+
+These are some things which I'll end up adding as I use this:
+
+	* Routing options/settings
+	* Integrate Doctrine2
 
 --------------
 License:

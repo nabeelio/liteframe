@@ -11,5 +11,9 @@ namespace Liteframe;
 
 # Default config options
 Config::set('DEFAULT_CONTROLLER', 'default');
+
+
 Config::set('BASE_URL', $_SERVER['SERVER_NAME']);
+
+
 Config::set('USE_REWRITE', true);
