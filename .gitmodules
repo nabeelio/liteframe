@@ -1,0 +1,3 @@
+[submodule "liteframe/lib/doctrine"]
+	path = liteframe/lib/doctrine
+	url = http://github.com/doctrine/doctrine2.git
