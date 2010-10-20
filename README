@@ -16,6 +16,21 @@ picked up from using other frameworks as well. Overall, I just want this to be
 super light, with all the basics
 
 --------------
+Installation:
+--------------
+
+The easiest way to keep liteframe updated (since it's under heavy development) 
+is to use it as a git submodule.
+
+First create your project:
+
+	mkdir project
+
+Initialize the repository:
+
+	git init .
+
+--------------
 Usage:
 --------------
 
@@ -45,9 +60,11 @@ Application Controller:
 As with CakePHP, there's a controller you can use as the parent which you can
 modify to add custom stuff which is available to all controllers. The file is:
 
-	app/app_controller.php
+	liteframe/controllers/app_controller.php
 
-The default controller inherits from this.
+The default controller inherits from this. To customize, copy into the app directory:
+
+	app/app_controller.php
 
 --------------
 Layouts:
