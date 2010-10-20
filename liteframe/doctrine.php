@@ -1,38 +1,29 @@
 <?php
 
-require_once 'Doctrine/Common/ClassLoader.php';
+require_once '../../lib/vendor/doctrine-common/lib/Doctrine/Common/ClassLoader.php';
 
-$classLoader = new \Doctrine\Common\ClassLoader('Doctrine');
+$classLoader = new \Doctrine\Common\ClassLoader('Doctrine\ORM', realpath(__DIR__ . '/../../lib'));
+$classLoader->register();
+$classLoader = new \Doctrine\Common\ClassLoader('Doctrine\DBAL', realpath(__DIR__ . '/../../lib/vendor/doctrine-dbal/lib'));
+$classLoader->register();
+$classLoader = new \Doctrine\Common\ClassLoader('Doctrine\Common', realpath(__DIR__ . '/../../lib/vendor/doctrine-common/lib'));
+$classLoader->register();
+$classLoader = new \Doctrine\Common\ClassLoader('Symfony', realpath(__DIR__ . '/../../lib/vendor'));
+$classLoader->register();
+$classLoader = new \Doctrine\Common\ClassLoader('Entities', __DIR__);
+$classLoader->register();
+$classLoader = new \Doctrine\Common\ClassLoader('Proxies', __DIR__);
 $classLoader->register();
 
-$classLoader = new \Doctrine\Common\ClassLoader('Symfony', 'Doctrine');
-$classLoader->register();
+// Variable $helperSet is defined inside cli-config.php
+require __DIR__ . '/cli-config.php';
 
-$configFile = getcwd() . DIRECTORY_SEPARATOR . 'cli-config.php';
-
-$helperSet = null;
-if (file_exists($configFile)) {
-    if ( ! is_readable($configFile)) {
-        trigger_error(
-            'Configuration file [' . $configFile . '] does not have read permission.', E_ERROR
-        );
-    }
-
-    require $configFile;
-    
-    foreach ($GLOBALS as $helperSetCandidate) {
-        if ($helperSetCandidate instanceof \Symfony\Component\Console\Helper\HelperSet) {
-            $helperSet = $helperSetCandidate;
-            break;
-        }
-    }
-}
-
-$helperSet = ($helperSet) ?: new \Symfony\Component\Console\Helper\HelperSet();
-
-$cli = new \Symfony\Component\Console\Application('Doctrine Command Line Interface', Doctrine\ORM\Version::VERSION);
+$cli = new \Symfony\Component\Console\Application('Doctrine Command Line Interface', Doctrine\Common\Version::VERSION);
 $cli->setCatchExceptions(true);
-$cli->setHelperSet($helperSet);
+$helperSet = $cli->getHelperSet();
+foreach ($helpers as $name => $helper) {
+    $helperSet->set($helper, $name);
+}
 $cli->addCommands(array(
     // DBAL Commands
     new \Doctrine\DBAL\Tools\Console\Command\RunSqlCommand(),
