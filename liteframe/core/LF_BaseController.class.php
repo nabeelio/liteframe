@@ -17,9 +17,20 @@ class Controller
 	public $title = __CLASS__;
 	public $layout = 'default';
 
+	public $dbconn;
+	public $dbmanager;
+
 	public function init()
 	{
 		
+		$dsn = Config::read('DATABASE_DSN');
+
+		if($dsn !== '')
+		{
+			$this->dbmanager = Doctrine_Manager::getInstance();
+			$this->dbconn = Doctrine_Manager::connection($dsn);
+
+		}
 	}
 
 	/**
@@ -48,7 +59,7 @@ class Controller
 			}
 		}
 
-		$this->render('elements/'.$file);
+		$this->render('/elements/'.$file);
 	}
 
 

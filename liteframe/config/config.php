@@ -10,10 +10,13 @@
 namespace Liteframe;
 
 # Default config options
-Config::set('DEFAULT_CONTROLLER', 'default');
+Config::write('DEFAULT_CONTROLLER', 'default');
 
 
-Config::set('BASE_URL', $_SERVER['SERVER_NAME']);
+Config::write('BASE_URL', $_SERVER['SERVER_NAME']);
 
 
-Config::set('USE_REWRITE', true);
+Config::write('USE_REWRITE', true);
+
+# If this is not blank, then a DB connection will be made
+Config::write('DATABASE_DSN', '');

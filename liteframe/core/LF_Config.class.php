@@ -13,6 +13,12 @@ class Config {
 	
 	public static $keys = array();
 
+	public static function write($key, $value = '')
+	{
+		self::set($key, $value);
+	}
+
+
 	/**
 	 * Set a global configuration value
 	 *
@@ -25,6 +31,12 @@ class Config {
 	{
 		self::$keys[$key] = $value;
 	}
+
+	public static function read($key, $index = null)
+	{
+		return self::get($key, $index);
+	}
+
 
 	/**
 	 * Retrieve the value of a global setting

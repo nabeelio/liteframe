@@ -22,18 +22,7 @@ Installation:
 The easiest way to keep liteframe updated (since it's under heavy development) 
 is to use it as a git repo:
 
-First create your project:
-
 	git clone https://nshahzad@github.com/nshahzad/liteframe.git project
-	cd project
-	git submodule init
-	git submodule update
-
-The last two lines download/update the doctrine library from its repository.
-And then finally, to update:
-
-	git pull
-	git submodule update
 
 
 --------------

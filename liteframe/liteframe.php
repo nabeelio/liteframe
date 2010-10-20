@@ -61,6 +61,16 @@ class Engine {
 
 		$controller_name = ucwords($run_info['controller']).'Controller';
 		$this->controller = new $controller_name();
+
+
+		# Load up the database includes if there is one specified
+		if(Config::read('DATABASE_DSN') !== '') {
+			// @TODO: Load up doctrine
+			#include LITEFRAME_PATH.DS.'lib'.DS.'doctrine-orm'.DS.'/Doctrine/Common/ClassLoader.php';
+			#$classLoader = new \Doctrine\Common\ClassLoader('Doctrine', '/path/to/libraries');
+			#$classLoader->register();
+		}
+
 		
 		call_user_func_array(array($this->controller, 'init'), array());
 		
