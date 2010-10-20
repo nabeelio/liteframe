@@ -37,7 +37,22 @@ include APP_PATH.DS.'config'.DS.'config.php';
 /* Main class! */
 class Engine {
 	
-	public static function runApp()
+	protected $controller = null;
+	
+	protected function set($key, $value)
+	{
+		Template::set($key, $value);
+	}
+
+	/**
+	 * Render a template from the elements folder
+	 */
+	protected function element($file, $vars)
+	{
+		$this->controller->element($file, $vars);
+	}
+
+	public function runApp()
 	{
 		$run_info = URLParser\URLParser::getPeices();
 
@@ -45,20 +60,22 @@ class Engine {
 		include APP_PATH.DS.'controllers'.DS.$run_info['controller'].'_controller.php';
 
 		$controller_name = ucwords($run_info['controller']).'Controller';
-		$controller = new $controller_name();
+		$this->controller = new $controller_name();
 		
-		call_user_func_array(array($controller, 'init'), array());
+		call_user_func_array(array($this->controller, 'init'), array());
 		
 		ob_start();
 
-		call_user_func_array(array($controller, $run_info['function']), $run_info['args']);
+		call_user_func_array(array($this->controller, $run_info['function']), $run_info['args']);
 		$content_for_layout = ob_get_clean();
 
 		ob_end_clean();
 
+		$title_for_layout = $this->controller->title;
+		
 		# Finally output with a global layout
 		if($controller->layout !== '')
-			include APP_PATH.DS.'layouts'.DS.$controller->layout.'.tpl';
+			include APP_PATH.DS.'layouts'.DS.$this->controller->layout.'.tpl';
 		else
 			include LITEFRAME_PATH.DS.'layouts'.DS.'default.tpl';
 	}

@@ -16,4 +16,5 @@ define('LITEFRAME_PATH', ROOT_PATH.DIRECTORY_SEPARATOR.'liteframe');
 define('APP_PATH', ROOT_PATH.DIRECTORY_SEPARATOR.'app');
 
 include LITEFRAME_PATH.DIRECTORY_SEPARATOR.'/liteframe.php';
-\Liteframe\Engine::runApp();
+$app = new \Liteframe\Engine();
+$app->runApp();

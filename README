@@ -20,15 +20,16 @@ Installation:
 --------------
 
 The easiest way to keep liteframe updated (since it's under heavy development) 
-is to use it as a git submodule.
+is to use it as a git repo:
 
 First create your project:
 
-	mkdir project
+	git clone https://nshahzad@github.com/nshahzad/liteframe.git project
 
-Initialize the repository:
+And then to update:
 
-	git init .
+	git pull
+
 
 --------------
 Usage:

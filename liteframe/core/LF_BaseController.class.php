@@ -14,6 +14,7 @@ class Controller
 	protected static $vars = array();
 	protected static $current_class = '';
 
+	public $title = __CLASS__;
 	public $layout = 'default';
 
 	public function init()
@@ -29,9 +30,25 @@ class Controller
 	 * @return none 
 	 *
 	 */
-	protected function set($key, $value)
+	public function set($key, $value)
 	{
 		self::$vars[$key] = $value;
+	}
+
+
+	/**
+	 * Render a template from the elements folder
+	 */
+	public function element($file, $vars)
+	{
+		
+		if(is_array($vars)) {
+			foreach($vars as $key => $value) {
+				$this->set($key, $value);
+			}
+		}
+
+		$this->render('elements/'.$file);
 	}
 
 
@@ -42,7 +59,7 @@ class Controller
 	 * @param string $file The filename, without the extension
 	 * @return none
 	 */
-	protected function render($file)
+	public function render($file)
 	{
 		# Supplied absolute path to file
 		if($file[0] === '/')
