@@ -25,10 +25,15 @@ is to use it as a git repo:
 First create your project:
 
 	git clone https://nshahzad@github.com/nshahzad/liteframe.git project
+	cd project
+	git submodule init
+	git submodule update
 
-And then to update:
+The last two lines download/update the doctrine library from its repository.
+And then finally, to update:
 
 	git pull
+	git submodule update
 
 
 --------------
