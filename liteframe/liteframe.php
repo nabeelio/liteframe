@@ -64,11 +64,24 @@ class Engine {
 
 
 		# Load up the database includes if there is one specified
-		if(Config::read('DATABASE_DSN') !== '') {
-			// @TODO: Load up doctrine
-			#include LITEFRAME_PATH.DS.'lib'.DS.'doctrine-orm'.DS.'/Doctrine/Common/ClassLoader.php';
-			#$classLoader = new \Doctrine\Common\ClassLoader('Doctrine', '/path/to/libraries');
-			#$classLoader->register();
+		if(Config::read('DATABASE_CONNECTOR') !== '') 
+		{
+			include LITEFRAME_PATH.DS.'lib'.DS.'php-activerecord'.DS.'ActiveRecord.php';
+		
+			$connections = Config::read('DATABASE_CONNECTIONS');
+			$default_connection = Config::read('DATABASE_CONNECTOR');
+			$model_path = APP_PATH.DS.'models';
+
+			# must issue a "use" statement in your closure if passing variables
+			ActiveRecord\Config::initialize(function($cfg) use ($connections, $default_connection, $model_path)
+			{
+				$cfg->set_model_directory($model_path);
+				$cfg->set_connections($connections);
+			
+				# default connection is now production
+				$cfg->set_default_connection($default_connection);
+			});
+			
 		}
 
 		
