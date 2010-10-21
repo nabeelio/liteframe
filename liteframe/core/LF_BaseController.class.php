@@ -23,14 +23,6 @@ class Controller
 	public function init()
 	{
 		
-		$dsn = Config::read('DATABASE_DSN');
-
-		if($dsn !== '')
-		{
-			$this->dbmanager = Doctrine_Manager::getInstance();
-			$this->dbconn = Doctrine_Manager::connection($dsn);
-
-		}
 	}
 
 	/**

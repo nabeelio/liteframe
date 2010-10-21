@@ -72,7 +72,7 @@ class Engine {
 			$model_path = APP_PATH.DS.'models';
 
 			# must issue a "use" statement in your closure if passing variables
-			ActiveRecord\Config::initialize(function($cfg) use ($connections, $default_connection, $model_path)
+			\ActiveRecord\Config::initialize(function($cfg) use ($connections, $default_connection, $model_path)
 			{
 				$cfg->set_model_directory($model_path);
 				$cfg->set_connections($connections);
