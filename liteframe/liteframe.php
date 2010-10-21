@@ -62,7 +62,6 @@ class Engine {
 		$controller_name = ucwords($run_info['controller']).'Controller';
 		$this->controller = new $controller_name();
 
-
 		# Load up the database includes if there is one specified
 		if(Config::read('DATABASE_CONNECTOR') !== '') 
 		{
@@ -81,7 +80,6 @@ class Engine {
 				# default connection is now production
 				$cfg->set_default_connection($default_connection);
 			});
-			
 		}
 
 		
