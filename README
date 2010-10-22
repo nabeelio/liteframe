@@ -23,7 +23,10 @@ The easiest way to keep liteframe updated (since it's under heavy development)
 is to use it as a git repo:
 
 	git clone https://nshahzad@github.com/nshahzad/liteframe.git project
+	git submodule init
+	git submodule update
 
+This also retrieves the php-activerecord submodule for database connectivity.
 
 --------------
 Usage:
@@ -34,6 +37,24 @@ Point Apache (or whatever webserver) to the app/www directory.
 I'll have more detailed docs, but look at the app/controllers/default_controller.php
 Basically, that's it. I'll be adding more functions to the $this-> as I need them,
 or ones that make sense.
+
+To add a new controller, create a file with
+	
+	[controller name]_controller.php
+
+With the class name being:
+
+	class [ControllerName]Controller extends \Liteframe\Controller {
+
+
+	}
+
+For example:
+
+	filename: default_controller.php
+	class DefaultController extends \Liteframe\Controller {
+
+	}
 
 Add your custom configuration options into app/config/config.php using:
 
