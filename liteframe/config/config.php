@@ -12,6 +12,9 @@ namespace Liteframe;
 # The default routing
 Config::write('DEFAULT_CONTROLLER', 'default');
 
+# Your default site title
+Config::write('SITE_TITLE', 'liteframe');
+
 # This is the default, used with the $this->url() function
 Config::write('BASE_URL', $_SERVER['SERVER_NAME']);
 

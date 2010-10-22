@@ -5,8 +5,7 @@ http://github.com/nshahzad/liteframe
 I know, I know, there are a ton of frameworks out there. But I needed something
 very lightweight, and figured it would be a nice and useful exercise in using some 
 new features of PHP 5.3, particularly namespaces. This will stay really simple, 
-emulating some of CakePHPs features. I'll be integrating Doctrine soon, but I 
-don't really need database connectivity right now. I'm basically using this as
+emulating some of CakePHPs features. I'm basically using this as
 a lookup server, for relaying Amazon API requests to the front-end, and caching 
 them in memcache/APC.
 
@@ -23,6 +22,11 @@ The easiest way to keep liteframe updated (since it's under heavy development)
 is to use it as a git repo:
 
 	git clone https://nshahzad@github.com/nshahzad/liteframe.git project
+	cd project
+	git submodule init
+	git submodule update
+
+This pulls the latest php-activerecord as a git submodule
 
 
 --------------
@@ -90,7 +94,6 @@ To Do List:
 These are some things which I'll end up adding as I use this:
 
 	* Routing options/settings
-	* Integrate Doctrine2
 
 --------------
 License:

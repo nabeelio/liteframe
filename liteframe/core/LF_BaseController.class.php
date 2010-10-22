@@ -23,6 +23,8 @@ class Controller
 	public function init()
 	{
 		
+		$this->title = Config::read('SITE_TITLE');
+		
 	}
 
 	/**

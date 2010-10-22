@@ -9,15 +9,11 @@
 
 namespace Liteframe;
 
-/*	Set your configuration options here,
-	defaults are located in /liteframe/config/config.php
-
-	Those are overridden by whatever is in this file.
-	You can also set configuration options for your app here
- */
-
 # The default routing
 Config::write('DEFAULT_CONTROLLER', 'default');
+
+# Your default site title
+Config::write('SITE_TITLE', 'liteframe');
 
 # This is the default, used with the $this->url() function
 Config::write('BASE_URL', $_SERVER['SERVER_NAME']);
@@ -26,8 +22,9 @@ Config::write('BASE_URL', $_SERVER['SERVER_NAME']);
 # Used with the $this->url() function to generate URLs
 Config::write('USE_REWRITE', true);
 
+
 Config::write('DATABASE_CONNECTIONS', array(
-	'example' => 'mysql://username:password@localhost/database_name',
+		'example' => 'mysql://username:password@localhost/database_name',
 	)
 );
 

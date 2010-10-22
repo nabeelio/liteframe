@@ -95,7 +95,7 @@ class Engine {
 		$title_for_layout = $this->controller->title;
 		
 		# Finally output with a global layout
-		if($controller->layout !== '')
+		if($this->controller->layout !== '')
 			include APP_PATH.DS.'layouts'.DS.$this->controller->layout.'.tpl';
 		else
 			include LITEFRAME_PATH.DS.'layouts'.DS.'default.tpl';
